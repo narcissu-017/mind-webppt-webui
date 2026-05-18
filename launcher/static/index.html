@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mindmap PPT Launcher</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23183a4a'/%3E%3Cpath d='M8 17h16M16 8v16' stroke='%23d8894f' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23fffdf8'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar">
+        <div class="brand-block">
+          <p class="eyebrow">Mindmap PPT</p>
+          <h1>演示项目管理</h1>
+        </div>
+        <div class="top-actions">
+          <a class="ghost-link" id="exportCurrent" href="/api/export/portable-html">导出单文件</a>
+          <a class="open-link" id="openProject" href="/project/index.html" target="_blank" rel="noreferrer">打开演示</a>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside class="manager-panel">
+          <form id="projectForm" class="project-form">
+            <label for="projectDir">添加或切换项目目录</label>
+            <div class="path-row">
+              <input id="projectDir" name="projectDir" autocomplete="off" spellcheck="false" />
+              <button type="submit">应用</button>
+            </div>
+          </form>
+
+          <section class="current-card" id="currentCard">
+            <div class="status-line">
+              <span class="status-dot"></span>
+              <strong id="statusTitle">检查中</strong>
+            </div>
+            <h2 id="currentName">当前项目</h2>
+            <p id="currentSubtitle">正在读取配置</p>
+            <code id="currentPath"></code>
+          </section>
+
+          <section class="library-panel">
+            <div class="library-head">
+              <div>
+                <p class="eyebrow">Library</p>
+                <h2>项目库</h2>
+              </div>
+              <span id="projectCount">0</span>
+            </div>
+            <input id="projectSearch" class="search-input" placeholder="搜索标题、路径或主题" autocomplete="off" />
+            <div class="project-list" id="projectList"></div>
+          </section>
+        </aside>
+
+        <section class="preview-panel">
+          <div class="preview-toolbar">
+            <div class="preview-title">
+              <p class="eyebrow">Preview</p>
+              <h2 id="previewTitle">当前项目</h2>
+              <span id="previewMeta"></span>
+            </div>
+            <div class="preview-actions">
+              <button id="refreshPreview" type="button">刷新</button>
+            </div>
+          </div>
+          <iframe id="previewFrame" title="Mindmap PPT 预览" src="/project/index.html"></iframe>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

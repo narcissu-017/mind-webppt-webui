@@ -1,0 +1,12 @@
+{
+  "name": "mind-webppt-webui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local WebUI and Codex skill for generating animated mind-map presentation pages.",
+  "scripts": {
+    "start": "node launcher/server.js",
+    "check": "node --check launcher/server.js && node --check launcher/static/app.js && npm --prefix mindmap-ppt run check"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

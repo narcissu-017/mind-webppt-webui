@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>当航线消失勇气成为地图</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23141413'/%3E%3Cpath d='M7 17h18M16 8v16' stroke='%23d97757' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23faf9f5'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="presentation-frame">
+        <svg class="motion-layer movie-motion" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="spotlightGold" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#ffe6a8" stop-opacity="0.5" />
+              <stop offset="70%" stop-color="#79c9ff" stop-opacity="0.08" />
+              <stop offset="100%" stop-color="#79c9ff" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <path class="film-rail film-rail-a" d="M72 714 C 300 592, 490 654, 720 516 S 1038 264, 1520 332" />
+          <path class="film-rail film-rail-b" d="M138 212 C 410 148, 610 220, 824 178 S 1180 112, 1490 226" />
+          <path class="film-rail film-rail-c" d="M210 812 C 456 706, 690 744, 914 620 S 1242 510, 1528 666" />
+          <path class="spotlight spotlight-a" d="M990 0 L1478 0 L1038 900 L632 900 Z" />
+          <path class="spotlight spotlight-b" d="M70 0 L360 0 L760 900 L410 900 Z" />
+          <g class="film-frame">
+            <path d="M118 122h210M118 778h210M1272 122h210M1272 778h210" />
+            <path d="M142 144v-32M298 144v-32M1300 144v-32M1456 144v-32M142 788v-32M298 788v-32M1300 788v-32M1456 788v-32" />
+          </g>
+          <g class="cloud-particles">
+            <circle cx="210" cy="318" r="4" />
+            <circle cx="376" cy="250" r="3" />
+            <circle cx="570" cy="334" r="3.6" />
+            <circle cx="778" cy="232" r="3" />
+            <circle cx="1018" cy="306" r="4.2" />
+            <circle cx="1234" cy="248" r="3.2" />
+            <circle cx="1416" cy="390" r="3.8" />
+          </g>
+          <g class="lens-spark lens-spark-a">
+            <circle cx="0" cy="0" r="5" />
+          </g>
+          <g class="lens-spark lens-spark-b">
+            <circle cx="0" cy="0" r="4" />
+          </g>
+        </svg>
+        <div id="mindmap" role="img" aria-label="Animated mindmap presentation">
+          <div class="map-layer" id="mapLayer">
+            <svg class="link-layer" id="linkLayer" aria-hidden="true"></svg>
+            <div class="node-layer" id="nodeLayer"></div>
+          </div>
+        </div>
+
+        <section class="floating-ui" aria-label="Presentation controls">
+          <div class="title-panel glass-panel">
+            <p class="eyebrow" id="deckSubtitle">Markdown Mindmap</p>
+            <h1 id="deckTitle">root</h1>
+          </div>
+
+          <div class="controls glass-panel" aria-label="节点演示操作区">
+            <button
+              class="controls-toggle"
+              id="controlsToggle"
+              type="button"
+              aria-expanded="true"
+              aria-controls="controlsBody"
+              aria-label="收起控制面板"
+              title="收起控制面板"
+            >
+              <span aria-hidden="true">−</span>
+            </button>
+            <div class="control-main" id="controlsBody">
+              <label class="node-scrubber" for="nodeSlider">
+                <input id="nodeSlider" type="range" min="0" max="0" value="0" aria-label="快速定位节点" />
+                <span class="counter" id="counter">1 / 1</span>
+              </label>
+              <div class="node-readout" aria-live="polite">
+                <div class="readout-card">
+                  <div class="readout-label" aria-hidden="true">
+                    下一页
+                  </div>
+                  <div class="node-content has-subtitle" id="nextNodePreview">
+                    <span class="node-subtitle" id="nextNodeSubtitle">即将进入</span>
+                    <span class="node-title" id="nextNodeTitle">root</span>
+                  </div>
+                </div>
+                <div class="zoom-control" aria-label="缩放设置">
+                  <div class="zoom-fields">
+                    <label class="zoom-row" for="zoomSlider">
+                      <span>画布缩放</span>
+                      <input id="zoomSlider" type="range" min="70" max="140" value="100" aria-label="调整整体大小" />
+                      <strong id="zoomValue">100%</strong>
+                    </label>
+                    <label class="zoom-row" for="activeScaleSlider">
+                      <span>选中放大</span>
+                      <input
+                        id="activeScaleSlider"
+                        type="range"
+                        min="100"
+                        max="200"
+                        step="5"
+                        value="150"
+                        aria-label="调整选中节点放大倍率"
+                      />
+                      <strong id="activeScaleValue">1.50x</strong>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <p class="control-hint">翻页：↑ ↓、Page Up / Page Down、滚轮或移动端上划/下划</p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
