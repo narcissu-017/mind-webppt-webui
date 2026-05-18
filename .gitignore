@@ -1,0 +1,8 @@
+node_modules/
+launcher/config.json
+launcher/*.log
+screenshots/
+exports/
+*.tmp
+.DS_Store
+Thumbs.db

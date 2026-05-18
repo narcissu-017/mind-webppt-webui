@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>失落群岛的记忆巡礼</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2308182b'/%3E%3Cpath d='M7 17h18M16 8v16' stroke='%23ffd27e' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23fff4d0'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="presentation-frame">
+        <svg class="motion-layer jrpg-motion" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <radialGradient id="lanternGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffd98a" stop-opacity="0.82" />
+              <stop offset="58%" stop-color="#d8894f" stop-opacity="0.18" />
+              <stop offset="100%" stop-color="#d8894f" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <path class="star-route star-route-a" d="M95 706 C 312 626, 430 718, 622 584 S 948 306, 1314 392 S 1490 546, 1540 474" />
+          <path class="star-route star-route-b" d="M180 258 C 390 166, 540 236, 760 184 S 1105 128, 1428 246" />
+          <path class="star-route star-route-c" d="M250 812 C 494 692, 730 762, 910 640 S 1210 526, 1508 704" />
+          <g class="star-field">
+            <circle cx="180" cy="176" r="3" />
+            <circle cx="310" cy="298" r="2.4" />
+            <circle cx="520" cy="142" r="2.8" />
+            <circle cx="760" cy="256" r="2.2" />
+            <circle cx="990" cy="164" r="3.2" />
+            <circle cx="1240" cy="286" r="2.3" />
+            <circle cx="1440" cy="156" r="3" />
+            <circle cx="1360" cy="668" r="2.6" />
+          </g>
+          <g class="lantern lantern-a">
+            <circle cx="0" cy="0" r="38" fill="url(#lanternGlow)" />
+            <path d="M-12 -18h24l8 18-8 22h-24l-8-22z" />
+            <path d="M0 -28v-20M-22 -2h44M0 22v24" />
+          </g>
+          <g class="lantern lantern-b">
+            <circle cx="0" cy="0" r="30" fill="url(#lanternGlow)" />
+            <path d="M-10 -15h20l7 15-7 19h-20l-7-19z" />
+            <path d="M0 -24v-17M-18 -1h36M0 19v19" />
+          </g>
+          <g class="magic-ring">
+            <circle cx="1315" cy="668" r="78" />
+            <circle cx="1315" cy="668" r="46" />
+            <path d="M1315 572v192M1219 668h192M1246 599l138 138M1384 599l-138 138" />
+          </g>
+        </svg>
+        <div id="mindmap" role="img" aria-label="Animated mindmap presentation">
+          <div class="map-layer" id="mapLayer">
+            <svg class="link-layer" id="linkLayer" aria-hidden="true"></svg>
+            <div class="node-layer" id="nodeLayer"></div>
+          </div>
+        </div>
+
+        <section class="floating-ui" aria-label="Presentation controls">
+          <div class="title-panel glass-panel">
+            <p class="eyebrow" id="deckSubtitle">Markdown Mindmap</p>
+            <h1 id="deckTitle">root</h1>
+          </div>
+
+          <div class="controls glass-panel" aria-label="节点演示操作区">
+            <button
+              class="controls-toggle"
+              id="controlsToggle"
+              type="button"
+              aria-expanded="true"
+              aria-controls="controlsBody"
+              aria-label="收起控制面板"
+              title="收起控制面板"
+            >
+              <span aria-hidden="true">−</span>
+            </button>
+            <div class="control-main" id="controlsBody">
+              <label class="node-scrubber" for="nodeSlider">
+                <input id="nodeSlider" type="range" min="0" max="0" value="0" aria-label="快速定位节点" />
+                <span class="counter" id="counter">1 / 1</span>
+              </label>
+              <div class="node-readout" aria-live="polite">
+                <div class="readout-card">
+                  <div class="readout-label" aria-hidden="true">
+                    下一页
+                  </div>
+                  <div class="node-content has-subtitle" id="nextNodePreview">
+                    <span class="node-subtitle" id="nextNodeSubtitle">即将进入</span>
+                    <span class="node-title" id="nextNodeTitle">root</span>
+                  </div>
+                </div>
+                <div class="zoom-control" aria-label="缩放设置">
+                  <div class="zoom-fields">
+                    <label class="zoom-row" for="zoomSlider">
+                      <span>画布缩放</span>
+                      <input id="zoomSlider" type="range" min="70" max="140" value="100" aria-label="调整整体大小" />
+                      <strong id="zoomValue">100%</strong>
+                    </label>
+                    <label class="zoom-row" for="activeScaleSlider">
+                      <span>选中放大</span>
+                      <input
+                        id="activeScaleSlider"
+                        type="range"
+                        min="100"
+                        max="200"
+                        step="5"
+                        value="150"
+                        aria-label="调整选中节点放大倍率"
+                      />
+                      <strong id="activeScaleValue">1.50x</strong>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <p class="control-hint">翻页：↑ ↓、Page Up / Page Down、滚轮或移动端上划/下划</p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
